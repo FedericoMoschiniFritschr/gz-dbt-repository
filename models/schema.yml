@@ -11,38 +11,39 @@ sources:
         description: sales of Greenweez / we have on row per product_id found in each orders_id
         loaded_at_field: date_date
         columns:
-        - name: date_date
-          description: date of purchase
-        - name: orders_id
-          description: id de la orden
-        - name: products_id
-          description: identity of product
-        - name: revenue
-          description: amount of the sales
-        - name: quantity
-          description: how many of this product
+          - name: date_date
+            description: date of purchase
+          - name: orders_id
+            description: id de la orden
+          - name: products_id
+            description: identity of product
+          - name: revenue
+            description: amount of the sales
+          - name: quantity
+            description: how many of this product
         
       - name: product
         identifier: raw_gz_product
         columns:
-        - name: products_id
-          description: identity of the product
-          tests: 
-            - unique 
-            - not_null
-         - name: purchase_price
-           description: the price of each product
+          - name: products_id
+            description: identity of the product
+            tests: 
+              - unique 
+              - not_null
+          - name: purchase_price
+            description: the price of each product
+
       - name: ship
         identifier: raw_gz_ship
         columns:
-        - name: orders_id
-          description: identity of the order
-          tests:
-            - unique
-            - not_null
-        - name: shipping_fee
-          description: shipping fees of the orders_id
-        - name: logcost
-          description: logcosts of the orders_id
-        - name: ship_cost
-          description: ship_cost of the orders_id
+          - name: orders_id
+            description: identity of the order
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: shipping fees of the orders_id
+          - name: logcost
+            description: logcosts of the orders_id
+          - name: ship_cost
+            description: ship_cost of the orders_id
