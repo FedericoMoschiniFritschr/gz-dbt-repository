@@ -22,21 +22,24 @@ sources:
         - name: quantity
           description: how many of this product
         
-      - name: product 
-        identifier: raw_gz_product 
-        description: products of Greenweez / we have one row per products_id and its purchase_price
+      - name: product
+        identifier: raw_gz_product
         columns:
         - name: products_id
           description: identity of the product
-        - name: purchSE_PRICE
-          description: the price of each product
-
+          tests: 
+            - unique 
+            - not_null
+         - name: purchase_price
+           description: the price of each product
       - name: ship
         identifier: raw_gz_ship
-        description: ship of Greenweez / we have one row per order_id and its shipping costs, fees & log costs assiociated
         columns:
         - name: orders_id
           description: identity of the order
+          tests:
+            - unique
+            - not_null
         - name: shipping_fee
           description: shipping fees of the orders_id
         - name: logcost
