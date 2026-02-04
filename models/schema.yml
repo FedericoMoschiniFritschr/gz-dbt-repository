@@ -15,27 +15,34 @@ sources:
           description: date of purchase
         - name: orders_id
           description: id de la orden
-        - name: product_id
+        - name: products_id
           description: identity of product
         - name: revenue
           description: amount of the sales
         - name: quantity
           description: how many of this product
         
-      - name: product 
+      - name: product
         identifier: raw_gz_product
         columns:
         - name: products_id
+          description: identity of the product
           tests: 
             - unique 
             - not_null
+         - name: purchase_price
+           description: the price of each product
       - name: ship
         identifier: raw_gz_ship
-        config:
-          loaded_at_field: orders_id
         columns:
         - name: orders_id
+          description: identity of the order
           tests:
             - unique
             - not_null
-         
+        - name: shipping_fee
+          description: shipping fees of the orders_id
+        - name: logcost
+          description: logcosts of the orders_id
+        - name: ship_cost
+          description: ship_cost of the orders_id
