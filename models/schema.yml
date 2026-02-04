@@ -15,7 +15,7 @@ sources:
           description: date of purchase
         - name: orders_id
           description: id de la orden
-        - name: product_id
+        - name: products_id
           description: identity of product
         - name: revenue
           description: amount of the sales
@@ -24,5 +24,22 @@ sources:
         
       - name: product 
         identifier: raw_gz_product 
+        description: products of Greenweez / we have one row per products_id and its purchase_price
+        columns:
+        - name: products_id
+          description: identity of the product
+        - name: purchSE_PRICE
+          description: the price of each product
+
       - name: ship
         identifier: raw_gz_ship
+        description: ship of Greenweez / we have one row per order_id and its shipping costs, fees & log costs assiociated
+        columns:
+        - name: orders_id
+          description: identity of the order
+        - name: shipping_fee
+          description: shipping fees of the orders_id
+        - name: logcost
+          description: logcosts of the orders_id
+        - name: ship_cost
+          description: ship_cost of the orders_id
