@@ -11,4 +11,4 @@ sources:
       - name: product 
         identifier: raw_gz_product 
       - name: ship
-        identifier: aw_gz_ship
+        identifier: raw_gz_ship
