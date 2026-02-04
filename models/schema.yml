@@ -9,7 +9,11 @@ sources:
       - name: sales
         identifier: raw_gz_sales
         description: sales of Greenweez / we have on row per product_id found in each orders_id
-        loaded_at_field: date_date
+        loaded_at_field: "CAST (date_date AS TIMESTAMP)"
+        freshness: 
+          warn_after:
+            count: 90
+            period: day
         columns:
         - name: date_date
           description: date of purchase
@@ -30,8 +34,8 @@ sources:
           tests: 
             - unique 
             - not_null
-         - name: purchase_price
-           description: the price of each product
+        - name: purchase_price
+          description: the price of each product
       - name: ship
         identifier: raw_gz_ship
         columns:
