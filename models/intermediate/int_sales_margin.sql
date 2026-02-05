@@ -9,5 +9,7 @@ ON product.products_id = sales.product_id
 )
 SELECT
 *,
-revenue - purchase_cost AS margin
+revenue - purchase_cost AS margin,
+{{margin_percent('revenue', 'purchase_cost')}} as margin_percent
 FROM cost_temp
+
