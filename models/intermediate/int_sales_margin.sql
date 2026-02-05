@@ -8,6 +8,7 @@ RIGHT JOIN {{ ref("stg_gz_raw_data__sales")}} AS sales
 ON product.products_id = sales.product_id
 )
 SELECT
-*,
-revenue - purchase_cost AS margin
+*
+, revenue - purchase_cost AS margin
+,{{ margin_percent("revenue","purchase_cost")}} AS margin_percentage
 FROM cost_temp

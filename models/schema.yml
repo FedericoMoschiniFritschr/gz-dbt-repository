@@ -154,7 +154,7 @@ models:
             - impression,
             - click
 
-  - name: int_campaigns_day
+  - name: finance_campaigns_day
     description: grouped campaign info by date in DESC order
     tests:
       - unique:
