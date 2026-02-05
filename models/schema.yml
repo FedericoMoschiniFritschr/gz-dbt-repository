@@ -142,3 +142,38 @@ models:
             - impression,
             - click
 
+  - name: int_campaigns_day
+    description: grouped campaign info by date in DESC order
+    tests:
+      - unique:
+          column_name: "date_date"      
+      - not_null:
+          column_name:
+            - date_date
+            - ads_cost, 
+            - impression,
+            - click
+
+  - name: int_campaigns_day
+    description: grouped campaign info by date in DESC order
+    tests:
+      - unique:
+          column_name: "date_date"      
+      - not_null:
+          column_name:
+            - date_date
+            - nb_transactions
+            - revenue
+            - average_basket
+            - average_basket_bis
+            - margin
+            - operational_margin
+            - purchase_cost
+            - shipping_fee
+            - logcost
+            - ship_cost
+            - quantity
+            - ads_cost, 
+            - impression,
+            - click
+
