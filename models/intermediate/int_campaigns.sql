@@ -1,15 +1,9 @@
-SELECT
-*
-FROM {{ ref("stg_gz_raw_data__adwords")}}
-UNION ALL
-SELECT
-*
-FROM {{ ref("stg_gz_raw_data__bings")}}
-UNION ALL
-SELECT
-*
-FROM {{ ref("stg_gz_raw_data__criteo")}}
-UNION ALL
-SELECT
-*
-FROM {{ ref("stg_gz_raw_data__facebook")}}
+SELECT *
+FROM {{ dbt_utils.union_relations(
+    relations=[
+        ref('stg_raw__adwords'),
+        ref('stg_raw__bing'),
+        ref('stg_raw__criteo'),
+        ref('stg_raw__facebook')
+    ]
+) }}
