@@ -173,7 +173,10 @@ models:
       - name: ship_cost	
       - name: quantity	
       - name: ads_margin
+
   - name: finance_campaigns_month
+
+
 
 
 
