@@ -126,3 +126,19 @@ models:
         description: sum of revenue per order 
       - name: quantity
         description: sum of quantity per order
+
+  - name: int_campaigns
+    description: unification of different ads campaigns
+    tests:
+      - unique:
+          column_name: "(date_date || '-' || campaign_key)"      
+      - not_null:
+          column_name:
+            - date_date
+            - paid_source,
+            - campaign_key,
+            - campaign_name,
+            - ads_cost, 
+            - impression,
+            - click
+
