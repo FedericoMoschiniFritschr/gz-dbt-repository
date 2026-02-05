@@ -44,3 +44,12 @@ models:
     # Applies to all files under models/example/
     example:
       +materialized: table
+models:
+  my_new_project:
+    marts:
+      +materialized: table
+      marketing:
+        schema: marketing
+    # Applies to all files under models/example/
+    example:
+      +materialized: table
