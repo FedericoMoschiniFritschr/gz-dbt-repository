@@ -1,6 +1,6 @@
 
 SELECT
-    date_date,
+    CAST (date_date AS DATE) AS date_date_new,
     COUNT(orders_id) AS nb_transactions,
     ROUND(SUM(CAST(revenue AS FLOAT64)),0) AS revenue,
     ROUND(AVG(CAST(revenue AS FLOAT64)),1) AS average_basket,
@@ -13,5 +13,5 @@ SELECT
     ROUND(SUM(CAST(ship_cost AS FLOAT64)),0) AS ship_cost,
     SUM(CAST(quantity AS INT64)) AS quantity
 FROM {{ref("int_orders_margin")}}
-GROUP BY date_date
-ORDER BY date_date DESC
+GROUP BY date_date_new
+ORDER BY date_date_new DESC
