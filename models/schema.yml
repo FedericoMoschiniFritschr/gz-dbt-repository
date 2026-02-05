@@ -53,20 +53,21 @@ sources:
             description: ship_cost of the orders_id
 
 models:
-      - name: int_sales_margin
-        tests:
-          - unique:
-              column_name: "(orders_id || '-' || products_id)"
-          - not_null:
-              column_name:
-                - orders_id
-                - products_id
-                - margin
-                - Purchase_cost
-                - date_date
-                - revenue
-                - quantity
-models:
+  - name: int_sales_margin
+    description: "Intermediate model for margin calculation"
+    tests:
+      - unique:
+          column_name: "(orders_id || '-' || product_id)"
+      - not_null:
+          column_name:
+            - orders_id
+            - product_id
+            - margin
+            - Purchase_cost
+            - date_date
+            - revenue
+            - quantity
+
   - name: int_orders_margin
     description: margin calcultation per order 
     columns:
