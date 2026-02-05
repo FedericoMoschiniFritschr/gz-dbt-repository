@@ -9,20 +9,77 @@ sources:
       - name: sales
         identifier: raw_gz_sales
         description: sales of Greenweez / we have on row per product_id found in each orders_id
-        loaded_at_field: date_date
+        loaded_at_field: "CAST (date_date AS TIMESTAMP)"
+        freshness:
+          warn_after:
+            count: 90
+            period: day
         columns:
-        - name: date_date
-          description: date of purchase
-        - name: orders_id
-          description: id de la orden
-        - name: product_id
-          description: identity of product
-        - name: revenue
-          description: amount of the sales
-        - name: quantity
-          description: how many of this product
+          - name: date_date
+            description: date of purchase
+          - name: orders_id
+            description: id de la orden
+          - name: products_id
+            description: identity of product
+          - name: revenue
+            description: amount of the sales
+          - name: quantity
+            description: how many of this product
         
-      - name: product 
-        identifier: raw_gz_product 
+      - name: product
+        identifier: raw_gz_product
+        columns:
+          - name: products_id
+            description: identity of the product
+            tests: 
+              - unique 
+              - not_null
+          - name: purchase_price
+            description: the price of each product
+
       - name: ship
         identifier: raw_gz_ship
+        columns:
+          - name: orders_id
+            description: identity of the order
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: shipping fees of the orders_id
+          - name: logcost
+            description: logcosts of the orders_id
+          - name: ship_cost
+            description: ship_cost of the orders_id
+
+models:
+  - name: int_sales_margin
+    description: "Intermediate model for margin calculation"
+    tests:
+      - unique:
+          column_name: "(orders_id || '-' || product_id)"
+      - not_null:
+          column_name:
+            - orders_id
+            - product_id
+            - margin
+            - Purchase_cost
+            - date_date
+            - revenue
+            - quantity
+
+  - name: int_orders_margin
+    description: margin calcultation per order 
+    columns:
+      - name: order_id
+        description: primary key
+      - name: margin
+        description: Margin = Revenue - Purchase_cost
+      - name: Purchase_cost
+        description: Purchase_cost = Quantity * Purchase_price 
+      - name: date_date
+        description: date of the order
+      - name: revenue
+        description: sum of revenue per order 
+      - name: quantity
+        description: sum of quantity per order
